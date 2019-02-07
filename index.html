@@ -1,0 +1,82 @@
+
+<html>
+<head>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDl6SdAeB4imUuZyMb_JOkJoo2u2hJ5_o8",
+    authDomain: "grub-4a906.firebaseapp.com",
+    databaseURL: "https://grub-4a906.firebaseio.com",
+    projectId: "grub-4a906",
+    storageBucket: "grub-4a906.appspot.com",
+    messagingSenderId: "27090028631"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+function lnch() {
+
+var database = firebase.database();
+firebase.database().ref('/launch/').once('value').then(function(snapshot) {
+  var ln = ( snapshot.val().launched);
+  // ...
+  console.log(ln);
+  if(ln==1)
+  {
+   // document.getElementById("blaah").src="csea.mp4";
+   var video = document.getElementById('video');
+   var img = document.getElementById('blaah');
+img.style.display = 'none';
+var vdo = document.getElementById('v2');
+vdo.style.display = 'block'; 
+video.play()
+  }
+}); 
+
+
+}
+</script>
+<script>
+  var i=1;
+var starCountRef = firebase.database().ref('/launch/');
+starCountRef.on('value', function(snapshot) {
+  console.log("chng");
+  if(i!=1){
+//document.getElementById("blaah").src="csea.mp4";
+var video = document.getElementById('video');
+   var img = document.getElementById('blaah');
+img.style.display = 'none';
+var vdo = document.getElementById('v2');
+vdo.style.display = 'block'; 
+video.play()
+}
+i++;
+});
+</script>
+
+
+<style>html,body{
+    margin:150dp;
+    height:100%;
+}
+img{
+  display:block;
+  width:100%; height:100%;
+  object-fit: cover;
+}
+</style>
+</head>
+<body onload="lnch()"><div id="dyn">
+
+<img id="blaah" src="rnd.gif" alt="">
+<div id="v2" style="display:none;">
+<video id="video" width="100%" height="100%" autoplay muted>
+    <source src="csea.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+  </video> 
+</div>
+
+</body>
+</html>
+
